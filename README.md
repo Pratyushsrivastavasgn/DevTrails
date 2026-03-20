@@ -111,8 +111,31 @@ Rather than building two entirely separate codebases, we use a **shared-logic ar
  
 
 -------------------------------------
-○ Detail your plans of integrating AI/ML into the workflow (Premium
-calculation, Fraud Detection and so on).
+
+AI/ML Integration and Workflow
+
+1. Calculating Weekly Premiums
+
+XGBoost will be used for premium calculations. It is a machine learning model that has proven to be very effective when working with structured datasets. By analyzing and predicting what delivery zone a rider delivers from, the projected rainfall for the upcoming week, the current air quality index (AQI), what season it is in the current year, and determining whether or not the delivery zone has a history of prior disruptions with no disruptions in a certain period of time, we will be able to identify the likelihood of the delivery rider losing income based on the number of deliveries per week. This will allow us to create a "risk score" for each rider that we will be able to use to determine their weekly premium. The XGBoost model is a good choice for this use case because it has demonstrated a high level of accuracy and has performed very well with all the real-world scenarios required in this use case.
+
+2. Detecting Fraud 
+
+We will be using an anomaly detection model called Isolation Forest to identify unusual patterns of claims that may be fraudulent in nature. For example, if a rider's GPS location does not match the delivery location, if there are multiple claims associated with one disruption event, if there are multiple claims with high frequency for a single rider, or if there are claims during a disruption event for riders who actually did not work during that disruption event. The best usage of the Isolation Forest model is to identify fraud since the number of fraud cases is so small, and the chance of obtaining a statistically significant quantity of labeled fraud claims to use for training is nearly impossible, which makes it impractical to use a traditional classification model for fraud.
+
+3. Estimating Income Loss
+The rider’s anticipated income loss during an outage will be calculated using Artificial Intelligence and/or Machine Learning to produce a more accurate estimate for payouts. To calculate these estimates, the model will input data such as hours worked, order volume for the area, dependence on peak hours, and historical earnings. This will enable the platform to calculate payouts based on estimated income loss rather than use a flat amount for all riders. As a result, the platform will be more equitable and individualized.
+
+4. Recommending Coverage
+Using Artificial Intelligence and/or Machine Learning, the system will also be able to recommend the optimal coverage plan on a weekly basis to each rider based upon their work pattern, risk by location, and average earnings on a weekly basis. This would help riders identify whether they should elect for basic, standard or enhanced coverage when they onboard with the platform. This will provide a better onboarding experience and simplify the process of determining which coverage option works best for a rider that may not understand what level of coverage works best for them.
+
+There are many reasons why this AI and ML approach is a powerful force in bringing together various models to create an intelligent and practical platform that can:
+•	Logistically reason by fair and personalized pricing on a weekly basis using XGBoost
+•	Avoid fraudulent claims and the number of false claims using Isolation Forest
+•	Provide accurately calculated payouts based on a transparent way to estimate loss of income via data analysis and predictive modeling
+•	Elevate user experience when being onboarded through recommendations that match insurance coverage with their unique situation
+
+Therefore, AI and ML are not just an enhancement but rather the foundation for the way the platform rates risks, protects workers and provides rapid, equitable payouts to those who have been injured or had other losses from weather-related events. 
+
 ---------------------------------
 
 
