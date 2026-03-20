@@ -161,14 +161,18 @@ Therefore, AI and ML are not just an enhancement but rather the foundation for t
 | Job Scheduler | node-cron | Weekly premium debit jobs, trigger polling loop |
 | Notifications | Twilio SMS API (trial) | Payout and disruption SMS to riders |
  
-### ML Microservice
+### AI/ML Microservice
 | Layer | Technology | Purpose |
 |---|---|---|
-| API Framework | Python + FastAPI | Hosts all ML model endpoints |
-| Premium Model | XGBoost + scikit-learn | Risk scoring and premium calculation |
-| Fraud Model | Isolation Forest (scikit-learn) | Anomaly-based fraud scoring |
-| NLP | spaCy | Curfew/strike detection from news |
-| Forecasting | Facebook Prophet | Next-week claim volume prediction |
+| API Framework | Python + FastAPI | Hosts and serves all AI/ML endpoints for pricing, fraud checks, and risk analysis |
+| Premium & Risk Model | XGBoost + scikit-learn | Predicts weekly income-loss risk and calculates dynamic weekly premium |
+| Fraud Detection Model | Isolation Forest + scikit-learn | Detects suspicious claim behavior such as GPS mismatch, duplicates, and abnormal claim frequency |
+| Income Loss Estimation | XGBoost Regressor / scikit-learn | Estimates likely wage loss during a qualifying disruption using work pattern and zone activity |
+| Coverage Recommendation | Rule-based scoring + ML features | Suggests the most suitable weekly protection plan for each rider |
+| Feature Processing | pandas + NumPy | Cleans, transforms, and prepares structured weather, AQI, and rider activity data |
+| Model Persistence | joblib / pickle | Saves trained models for fast reuse during prediction |
+| External Data Integration | Weather API + AQI API + mock platform data | Supplies real-time and historical inputs for pricing, trigger validation, and payout support |
+| Monitoring & Logging | FastAPI logs + Python logging | Tracks model requests, fraud flags, and prediction flow for debugging and transparency |
  
 ### External Integrations
 | Service | API | Tier |
